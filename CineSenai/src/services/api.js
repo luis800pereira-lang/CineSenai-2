@@ -98,6 +98,55 @@ export const api = {
         }),
     },
 
+    salas: {
+            listar: () => request("/api/salas"),
+
+            buscarPorId: (id) => request(`/api/salas/${id}`),
+
+            criar: (sala) => request("/api/salas", {
+                method: "POST",
+                body: JSON.stringify(sala),
+            }),
+
+            deletar: (id) => request(`/api/salas/${id}`{
+                method: "DELETE",
+            }),
+               
+    },
+
+    sessoes: {
+            listarPorData: (data) => request (`api/sessoes?data=${data}`),
+
+            listarPorFilme: (filmeId) => request (`/api/sessoes?filmeId=${filmeId}`),
+
+            buscarPorId: (id) => request(`/api/sessoes/${id}`),
+
+            listarAssentos: (id) => request(`/api/sessoes/${id}/assentos`),
+
+            criar: (sessao) => request("/api/sessoes", {
+                method: "POST",
+                body: JSON.stringify(sessao),
+            }),
+
+            deletar: (id) => request(`/api/salas/${id}`{
+                method: "DELETE",
+            }),
+    },
+
+    reservas: {
+
+        criar: (sessaoId, assentoId) => request("/api/reservas", {
+            method: "POST",
+            body: JSON.stringify({sessaoId, assentoIds}),
+        }),
+
+        listarMinhas: () => request("/api/reservas/minhas"),
+
+        cancelar: (id) => request(`/api/reservas/${id}`, {
+            method: "DELETE",
+        }),
+    },
+
     avaliacoes: {
         
         listar: (filmeId) => request(`/api/filmes/${filmeId}/avaliacoes`),
@@ -133,5 +182,26 @@ export const api = {
 
         verificar: (filmeId) => request(`api/favoritos/verificar?filmeId=${filmeId}`),
     },
+
+    usuario: {
+
+        buscarPerfil: () => request("/api/usuario/perfil"),
+
+         atualizarPerfil: (nome, email) => request("/api/usuario/perfil", {
+            method: "PUT",
+            body: JSON.stringify({nome, email})
+        }),
+
+        trocarSenha: (senhaAtual, novaSenha) => request("/api/usuario/senha", {
+            method: "PATCH",
+            body: JSON.stringify({senhaAtual, novaSenha}),
+        }),
+
+        excluirConta: () => request("/api/usuario/perfil", {
+            method: "DELETE"
+        })
+    },
+
+   
 }
 
